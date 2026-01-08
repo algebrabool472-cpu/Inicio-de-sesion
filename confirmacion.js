@@ -5,9 +5,9 @@ const data = JSON.parse(atob(response.credential.split('.')[1]));
 console.log("Usuario:", data);
 document.body.innerHTML += `<p>Bienvenido ${data.name} (${data.email})</p>`;
 
-window.location.replace("https://codificadordebool.onrender.com/principal");
-}
 
+window.location.replace("https://codificadordebool.onrender.com");
+}
 
 window.onload = function () {
 google.accounts.id.initialize({
@@ -20,7 +20,6 @@ google.accounts.id.renderButton(
 );
 google.accounts.id.prompt();
 };
-
 
 const form = document.getElementById('loginForm');
 const btn = document.getElementById('loginBtn');
@@ -46,11 +45,10 @@ try {
     const data = await res.json();
 
     if (res.ok && data.success) {
-        const destino = data.redirectTo || 'principal';
-        window.location.replace("https://codificadordebool.onrender.com/" + destino);
+    window.location.replace("https://codificadordebool.onrender.com");
     } else {
-        errorMsg.textContent = data.message || 'Credenciales incorrectas';
-        errorMsg.style.display = 'block';
+    errorMsg.textContent = data.message || 'Credenciales incorrectas';
+    errorMsg.style.display = 'block';
     }
 } catch (err) {
     errorMsg.textContent = 'Error de conexión. Intenta de nuevo.';
